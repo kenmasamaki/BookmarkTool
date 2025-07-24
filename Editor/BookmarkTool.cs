@@ -60,6 +60,9 @@ public class BookmarkTool : EditorWindow
 	private int renameGroupIndex = -1;
 	private string renameGroupName = "";
 
+	// クラスフィールドに追加
+	private bool showPath = false;
+
 	[MenuItem("Tools/Bookmark Tool")]
 	public static void ShowWindow()
 	{
@@ -87,9 +90,27 @@ public class BookmarkTool : EditorWindow
 				break;
 		}
 
+
 		// 下部にスペースを入れてボタンを下端に配置
 		GUILayout.FlexibleSpace();
 		EditorGUILayout.LabelField("ブックマークデータ", EditorStyles.boldLabel);
+
+		// --- 保存先表示チェックボックスを右端に配置 ---
+		EditorGUILayout.BeginHorizontal();
+		GUILayout.FlexibleSpace();
+		showPath = EditorGUILayout.ToggleLeft("保存先を表示", showPath, GUILayout.Width(90));
+		EditorGUILayout.EndHorizontal();
+
+		if (showPath)
+		{
+			// 小さいテキストスタイル
+			GUIStyle smallLabel = new GUIStyle(EditorStyles.label);
+			smallLabel.fontSize = 10;
+
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.SelectableLabel(GetBookmarkFilePath(), smallLabel, GUILayout.Height(EditorGUIUtility.singleLineHeight));
+			EditorGUILayout.EndHorizontal();
+		}
 
 		// --- 横並びで表示 ---
 		EditorGUILayout.BeginHorizontal();
@@ -102,12 +123,6 @@ public class BookmarkTool : EditorWindow
 			LoadBookmarks();
 		}
 		EditorGUILayout.EndHorizontal();
-
-		// ---　データ格納場所の表示 ---
-		EditorGUILayout.Space(10);
-		EditorGUILayout.LabelField("データ格納場所:", EditorStyles.boldLabel);
-		// 編集不可・コピー可能なラベルで表示
-		EditorGUILayout.SelectableLabel(GetBookmarkFilePath());
 	}
 
 	private static readonly Color DragHighlightColor = new Color(0.8f, 0.9f, 1.0f, 1.0f); // Light blue
