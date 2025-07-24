@@ -102,6 +102,12 @@ public class BookmarkTool : EditorWindow
 			LoadBookmarks();
 		}
 		EditorGUILayout.EndHorizontal();
+
+		// ---　データ格納場所の表示 ---
+		EditorGUILayout.Space(10);
+		EditorGUILayout.LabelField("データ格納場所:", EditorStyles.boldLabel);
+		// 編集不可・コピー可能なラベルで表示
+		EditorGUILayout.SelectableLabel(GetBookmarkFilePath());
 	}
 
 	private static readonly Color DragHighlightColor = new Color(0.8f, 0.9f, 1.0f, 1.0f); // Light blue
