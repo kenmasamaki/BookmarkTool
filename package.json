@@ -1,0 +1,9 @@
+{
+	"name": "com.kenmasamaki.bookmarktool",
+	"displayName": "BookmarkTool",
+	"version": "1.0.0",
+	"description": "BookmarkToolは、Unityエディタ上でアセットのブックマークを管理できるエディタ拡張です。グループ分けやドラッグ＆ドロップによる登録、並び替え、絞り込み表示など多機能なブックマーク管理をサポートします。",
+	"author": {
+		"name": "Tsujiken"
+	}
+}
